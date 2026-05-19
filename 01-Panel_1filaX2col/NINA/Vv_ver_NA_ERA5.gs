@@ -1,0 +1,40 @@
+*compuesto w_ver_NO en 4 niveles
+'reinit'
+'sdfopen ../../../DATOS/DATOS-CORREGIDOS/ERA5-Vv-59_21.nc'
+'set display color white'
+'c'
+'set lon -120 -80'
+'set lat 15 35'
+'set lev 500'
+'set display color white'
+'set mproj scaled'
+'set mpdset hires estados'
+'set grads off'
+'set gxout shaded'
+'set xlab off'
+'set ylab off'
+
+*VERANO CLIMA
+'define wM = ave(w,t=29,t=756,12)'
+'define wJn = ave(w,t=30,t=756,12)'
+'define wJl = ave(w,t=31,t=756,12)'
+'define wA = ave(w,t=32,t=756,12)'
+'define wS = ave(w,t=33,t=756,12)'
+'define wO = ave(w,t=34,t=756,12)'
+'define tver = (wM + wJn + wJl + wA + wS + wO)/6'
+
+*VERANOS NIÑA
+'define t05a = ( w(time=01may1964) + w(time=01may1970) + w(time=01may1971) + w(time=01may1973) + w(time=01may1975) + w(time=01may1984) + w(time=01may1988) + w(time=01may1995) + w(time=01may1998) + w(time=01may1999) + w(time=01may2000) + w(time=01may2007) + w(time=01may2010) + w(time=01may2011))/14'  
+'define t06a = ( w(time=01jun1964) + w(time=01jun1970) + w(time=01jun1971) + w(time=01jun1973) + w(time=01jun1975) + w(time=01jun1984) + w(time=01jun1988) + w(time=01jun1995) + w(time=01jun1998) + w(time=01jun1999) + w(time=01jun2000) + w(time=01jun2007) + w(time=01jun2010) + w(time=01jun2011))/14'  
+'define t07a = ( w(time=01jul1964) + w(time=01jul1970) + w(time=01jul1971) + w(time=01jul1973) + w(time=01jul1975) + w(time=01jul1984) + w(time=01jul1988) + w(time=01jul1995) + w(time=01jul1998) + w(time=01jul1999) + w(time=01jul2000) + w(time=01jul2007) + w(time=01jul2010) + w(time=01jul2011))/14'  
+'define t08a = ( w(time=01aug1964) + w(time=01aug1970) + w(time=01aug1971) + w(time=01aug1973) + w(time=01aug1975) + w(time=01aug1984) + w(time=01aug1988) + w(time=01aug1995) + w(time=01aug1998) + w(time=01aug1999) + w(time=01aug2000) + w(time=01aug2007) + w(time=01aug2010) + w(time=01aug2011))/14'  
+'define t09a = ( w(time=01sep1964) + w(time=01sep1970) + w(time=01sep1971) + w(time=01sep1973) + w(time=01sep1975) + w(time=01sep1984) + w(time=01sep1988) + w(time=01sep1995) + w(time=01sep1998) + w(time=01sep1999) + w(time=01sep2000) + w(time=01sep2007) + w(time=01sep2010) + w(time=01sep2011))/14'  
+'define t10a = ( w(time=01oct1964) + w(time=01oct1970) + w(time=01oct1971) + w(time=01oct1973) + w(time=01oct1975) + w(time=01oct1984) + w(time=01oct1988) + w(time=01oct1995) + w(time=01oct1998) + w(time=01oct1999) + w(time=01oct2000) + w(time=01oct2007) + w(time=01oct2010) + w(time=01oct2011))/14'  
+'define tvera = ((t05a + t06a + t07a + t08a + t09a + t10a)/6)'
+
+'set parea 0.3 10.5 2 8.2'
+'../colormaps_v2.gs -map oj2p -levels -0.02 0.02 0.0025'
+'d smth9(tvera-tver)'
+'../xcbar2.gs 0.3 10.5 1.25 1.5 -edge triangle -dir h -line on -fs 2'
+
+'printim ../../../FIGURAS/NINA/ENSO-Vv_500-VER_NA.png x2200 y1700'

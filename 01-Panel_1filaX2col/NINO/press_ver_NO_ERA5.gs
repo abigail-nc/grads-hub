@@ -1,0 +1,40 @@
+*compuesto sp_ver_NO
+'reinit'
+'sdfopen ../../../DATOS/DATOS-CORREGIDOS/ERA5-press-59_21.nc'
+'set display color white'
+'c'
+'set lon 240 280'
+'set lat 14 35'
+'set display color white'
+'set mproj scaled'
+'set mpdset hires estados'
+'set grads off'
+'set gxout shaded'
+'set xlab off'
+'set ylab off'
+
+*VERANO CLIMA
+'define spM = ave(sp,t=29,t=756,12)'
+'define spJn = ave(sp,t=30,t=756,12)'
+'define spJl = ave(sp,t=31,t=756,12)'
+'define spA = ave(sp,t=32,t=756,12)'
+'define spS = ave(sp,t=33,t=756,12)'
+'define spO = ave(sp,t=34,t=756,12)'
+'define tver = ((spM + spJn + spJl + spA + spS + spO)/6)/100'
+
+*VERANO ENSO
+'define t05o = ( sp(time=01may1963) + sp(time=01may1965) + sp(time=01may1972) + sp(time=01may1982) + sp(time=01may1987) + sp(time=01may1991) + sp(time=01may1997) + sp(time=01may2002) + sp(time=01may2004) + sp(time=01may2009) + sp(time=01may2015))/11'  
+'define t06o = ( sp(time=01jun1963) + sp(time=01jun1965) + sp(time=01jun1972) + sp(time=01jun1982) + sp(time=01jun1987) + sp(time=01jun1991) + sp(time=01jun1997) + sp(time=01jun2002) + sp(time=01jun2004) + sp(time=01jun2009) + sp(time=01jun2015))/11'  
+'define t07o = ( sp(time=01jul1963) + sp(time=01jul1965) + sp(time=01jul1972) + sp(time=01jul1982) + sp(time=01jul1987) + sp(time=01jul1991) + sp(time=01jul1997) + sp(time=01jul2002) + sp(time=01jul2004) + sp(time=01jul2009) + sp(time=01jul2015))/11'  
+'define t08o = ( sp(time=01aug1963) + sp(time=01aug1965) + sp(time=01aug1972) + sp(time=01aug1982) + sp(time=01aug1987) + sp(time=01aug1991) + sp(time=01aug1997) + sp(time=01aug2002) + sp(time=01aug2004) + sp(time=01aug2009) + sp(time=01aug2015))/11'  
+'define t09o = ( sp(time=01sep1963) + sp(time=01sep1965) + sp(time=01sep1972) + sp(time=01sep1982) + sp(time=01sep1987) + sp(time=01sep1991) + sp(time=01sep1997) + sp(time=01sep2002) + sp(time=01sep2004) + sp(time=01sep2009) + sp(time=01sep2015))/11'  
+'define t10o = ( sp(time=01oct1963) + sp(time=01oct1965) + sp(time=01oct1972) + sp(time=01oct1982) + sp(time=01oct1987) + sp(time=01oct1991) + sp(time=01oct1997) + sp(time=01oct2002) + sp(time=01oct2004) + sp(time=01oct2009) + sp(time=01oct2015))/11'  
+'define tvero = ((t05o + t06o + t07o + t08o + t09o + t10o)/6)/100'
+
+*'set parea 0.5 7.5 0.35 3.85'
+'set parea 0.3 10.5 2 8.2'
+'../colormaps_v2.gs -map y2b -flipped -levels -0.25 0.25 0.025'
+'d tvero-tver'
+'../xcbar2.gs 0.3 10.5 1.25 1.5 -edge triangle -dir h -line on -fs 2'
+'printim ../../../FIGURAS/NINO/ENSO-press-ANOM-VER_NO.png x2200 y1700'
+

@@ -1,0 +1,40 @@
+*compuesto t2m_ver_NO
+'reinit'
+'sdfopen ../../../DATOS/DATOS-CORREGIDOS/ERA5-t2m-59_21.nc'
+'set display color white'
+'c'
+'set lon 240 280'
+'set lat 14 35'
+'set display color white'
+'set mproj scaled'
+'set mpdset hires estados'
+'set grads off'
+'set gxout shaded'
+'set xlab off'
+'set ylab off'
+
+*VERANO CLIMA
+'define t2mM = ave(t2m,t=29,t=756,12)'
+'define t2mJn = ave(t2m,t=30,t=756,12)'
+'define t2mJl = ave(t2m,t=31,t=756,12)'
+'define t2mA = ave(t2m,t=32,t=756,12)'
+'define t2mS = ave(t2m,t=33,t=756,12)'
+'define t2mO = ave(t2m,t=34,t=756,12)'
+'define tver = (t2mM + t2mJn + t2mJl + t2mA + t2mS + t2mO)/6'
+
+*VERANO ENSO
+'define t05o = ( t2m(time=01may1963) + t2m(time=01may1965) + t2m(time=01may1972) + t2m(time=01may1982) + t2m(time=01may1987) + t2m(time=01may1991) + t2m(time=01may1997) + t2m(time=01may2002) + t2m(time=01may2004) + t2m(time=01may2009) + t2m(time=01may2015))/11'  
+'define t06o = ( t2m(time=01jun1963) + t2m(time=01jun1965) + t2m(time=01jun1972) + t2m(time=01jun1982) + t2m(time=01jun1987) + t2m(time=01jun1991) + t2m(time=01jun1997) + t2m(time=01jun2002) + t2m(time=01jun2004) + t2m(time=01jun2009) + t2m(time=01jun2015))/11'  
+'define t07o = ( t2m(time=01jul1963) + t2m(time=01jul1965) + t2m(time=01jul1972) + t2m(time=01jul1982) + t2m(time=01jul1987) + t2m(time=01jul1991) + t2m(time=01jul1997) + t2m(time=01jul2002) + t2m(time=01jul2004) + t2m(time=01jul2009) + t2m(time=01jul2015))/11'  
+'define t08o = ( t2m(time=01aug1963) + t2m(time=01aug1965) + t2m(time=01aug1972) + t2m(time=01aug1982) + t2m(time=01aug1987) + t2m(time=01aug1991) + t2m(time=01aug1997) + t2m(time=01aug2002) + t2m(time=01aug2004) + t2m(time=01aug2009) + t2m(time=01aug2015))/11'  
+'define t09o = ( t2m(time=01sep1963) + t2m(time=01sep1965) + t2m(time=01sep1972) + t2m(time=01sep1982) + t2m(time=01sep1987) + t2m(time=01sep1991) + t2m(time=01sep1997) + t2m(time=01sep2002) + t2m(time=01sep2004) + t2m(time=01sep2009) + t2m(time=01sep2015))/11'  
+'define t10o = ( t2m(time=01oct1963) + t2m(time=01oct1965) + t2m(time=01oct1972) + t2m(time=01oct1982) + t2m(time=01oct1987) + t2m(time=01oct1991) + t2m(time=01oct1997) + t2m(time=01oct2002) + t2m(time=01oct2004) + t2m(time=01oct2009) + t2m(time=01oct2015))/11'  
+'define tvero = (t05o + t06o + t07o + t08o + t09o + t10o)/6'
+
+*'set parea 0.5 7.5 0.35 3.85'
+'set parea 0.3 10.5 2 8.2'
+'../colormaps_v2.gs -map b2r -levels -2 2 0.15'
+'d tvero-tver'
+'../xcbar2.gs 0.3 10.5 1.25 1.5 -edge triangle -dir h -line on -fs 2'
+
+'printim ../../../FIGURAS/NINO/ENSO-t2m-ANOM-VER_NO.png x2200 y1700'

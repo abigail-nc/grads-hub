@@ -1,0 +1,48 @@
+'reinit'
+'sdfopen ../../../DATOS/DATOS-CORREGIDOS/PROMEDIOS/ERA5-tp-61_20-CLM.nc'
+'set display color white'
+'c'
+'set lon -120 -80'
+'set lat 15 35'
+'set display color white'
+'set mproj scaled'
+'set mpdset hires estados'
+'set grads off'
+'set gxout shaded'
+'set xlab off'
+'set ylab off'
+
+*Meses de invierno: Noviembre - Abril
+'define tp1 = tp(t=01)'
+'define tp2 = tp(t=02)'
+'define tp3 = tp(t=03)'
+'define tp4 = tp(t=04)'
+'define tp11 = tp(t=11)'
+'define tp12 = tp(t=12)'
+'define tinv = (tp1+tp2+tp3+tp4+tp11+tp12)'
+*Meses de verano: Mayo - Octubre
+'define tp5 = tp(t=05)'
+'define tp6 = tp(t=06)'
+'define tp7 = tp(t=07)'
+'define tp8 = tp(t=08)'
+'define tp9 = tp(t=09)'
+'define tp10 = tp(t=10)'
+'define tver = (tp5+tp6+tp7+tp8+tp9+tp10)'
+
+'set parea 0.5 5.25 2 5.5'
+'colormaps_v2.gs -map Terrain1 -flipped -levels 0 900 20'
+'d tinv'
+'set parea 5.75 10.5 2 5.5'
+'colormaps_v2.gs -map Terrain1 -flipped -levels 0 900 20'
+'d tver'
+**********************************************************************+
+'xcbar2.gs 0.28 10.655 1.25 1.5 -edge triangle -dir h -line on -fs 10'
+etiquetas()
+'printim ../../../FIGURAS/Clima-estacional/tp-estac.png x2200 y1700'
+function etiquetas()
+'set string 1 l 5 0'
+'set strsiz 0.15'
+'draw string 0.5 5.67 a)'
+'draw string 5.75 5.67 b)'
+'draw string 5.1 1.7 (mm)'
+return
