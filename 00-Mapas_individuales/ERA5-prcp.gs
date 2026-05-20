@@ -1,12 +1,12 @@
 * SCRIPT PARA
-* Crear mapa de temperatura
-* Datos de entrada: SampleDatasets/ERA5-temp-monthlyAveraged-ene_mzo2011.nc
+* Crear mapa de precipitación
+* Datos de entrada: SampleDatasets/ERA5-monthlyAveraged-ene_mzo2011.nc
 *--------------------------------------------
 
 * LECTURA DE ARCHIVO
 * --------------------
 'reinit'
-'sdfopen SampleDatasets/ERA5-temp-monthlyAveraged-ene_mzo2011.nc'
+'sdfopen SampleDatasets/ERA5-precip-monthlyAveraged-ene_mzo2011.nc'
 
 *** Para saber las dimensiones de la malla debe ejecutarse `q file`
 
@@ -24,26 +24,24 @@
 
 * DESPLIEGUE DE LA VARIABLE
 *----------------------------------
-'set parea 0.5 9.5 0.75 7.25'
-'./_Recursos/colormaps_v2.gs -map Satellite -levels -3 27 3 - flipped'
+'set parea 0.5 9.5 0.5 7.25'
+'./_Recursos/colormaps_v2.gs -map paired -levels 0 13 1'
 
-'d t2m-273.15'
+'d tp*1000'
 
 './_Recursos/xcbar2.gs 10 10.35 1 7 -edge triangle -dir v -line on -fs 2'
 etiquetas()
-'printim ./z_EjemplosFiguras/00-ERA5_temp_1x1.png x2200 y1700'
+'printim ./z_EjemplosFiguras/00-ERA5_prcp_1x1.png x2200 y1700'
 
 function etiquetas()
 'set string 1 l 5 0'
 'set strsiz 0.2'
-'draw string 0.55 7.5 Temperatura Mx - promedio Enero-2001'
+'draw string 0.55 7.5 Precipitacion Mx - promedio Enero-2001'
 
 'set string 1 l 5 90'
 'set strsiz 0.15'
-'draw string 9.75 3.8 (`0`a0`nC)'
+'draw string 9.75 3.8 (mm)'
 
 
 return
-
-
 
